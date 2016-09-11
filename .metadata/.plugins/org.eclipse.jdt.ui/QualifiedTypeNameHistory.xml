@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="javax.sql.DataSource"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
+<fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="ua.nenya.main.Runner"/>
+<fullyQualifiedTypeName name="ua.nenya.dao.ReadTeamGamesDAO"/>
+<fullyQualifiedTypeName name="ua.nenya.dao.impl.ReadTeamGamesDAOImpl"/>
+<fullyQualifiedTypeName name="java.util.Collections"/>
+<fullyQualifiedTypeName name="javax.persistence.PersistenceContext"/>
+<fullyQualifiedTypeName name="javax.persistence.EntityManager"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="ua.nenya.domain.Game"/>
+<fullyQualifiedTypeName name="ua.nenya.calculator.Calculator"/>
+<fullyQualifiedTypeName name="ua.nenya.domain.Team"/>
+</qualifiedTypeNameHistroy>

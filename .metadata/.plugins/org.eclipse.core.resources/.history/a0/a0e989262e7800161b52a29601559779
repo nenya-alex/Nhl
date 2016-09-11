@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiResourceLocking="true">
+            <Resource 
+              name="jdbc/nhl" 
+              auth="Container"
+              type="javax.sql.DataSource" 
+              username="postgres" 
+              password="111111"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://127.0.0.1:5432/nhl"
+              validationQuery="select 1"
+              maxActive="10" 
+              maxIdle="4"
+             />
+</Context>

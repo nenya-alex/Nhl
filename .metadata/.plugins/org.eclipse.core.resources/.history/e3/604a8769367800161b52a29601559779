@@ -1,0 +1,50 @@
+package ua.nenya.calculator;
+
+import java.util.List;
+
+import ua.nenya.domain.Game;
+import ua.nenya.domain.Team;
+
+public class Calculator {
+	
+	public Team calculateTeamStat(List<Game> games, String teamName){
+		int numberOfOverTime = 0;
+		int numberOfOverTimeWins;
+		int numberOfOverTimeLosses;
+		int points = 0;
+		double pointPstg;
+		int wins;
+		int losses;
+		int draws = 0;
+		Team team = new Team();
+		
+		team.setTeamName(teamName);
+		
+		int numberOfGames = games.size();
+		team.setNumberOfGames(numberOfGames);
+		
+		for (int i = 0; i < games.size(); i++) {
+			Game game = games.get(i);
+			
+			if(game.isOverTime()){
+				draws++;
+				numberOfOverTime++;
+				if(game.getHomeTeamName().equals(teamName)){
+					if(game.getHomeGoals()>game.getGuestGoals()){
+						points++;
+					}else{
+						
+					}
+				}else{
+					
+				}
+			}else{
+				
+			}
+		}
+		
+		return team;
+		
+	}
+
+}

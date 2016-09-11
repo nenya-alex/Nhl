@@ -1,0 +1,34 @@
+package ua.nenya.calculator;
+
+import java.util.List;
+
+import ua.nenya.domain.Game;
+import ua.nenya.domain.Team;
+
+public class Calculator {
+	
+	public Team calculateTeamStat(List<Game> games, String teamName){
+		int numberOfOverTime;
+		int numberOfOverTimeWins;
+		int numberOfOverTimeLosses;
+		int points;
+		double pointPstg;
+		int wins;
+		int losses;
+		int draws;
+		Team team = new Team();
+		
+		team.setTeamName(teamName);
+		
+		int numberOfGames = games.size();
+		team.setNumberOfGames(numberOfGames);
+		
+		for (int i = 0; i < games.size(); i++) {
+			
+		}
+		
+		return team;
+		
+	}
+
+}

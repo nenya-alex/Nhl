@@ -1,0 +1,24 @@
+package ua.nenya.main;
+
+import java.util.List;
+
+import ua.nenya.dao.ReadTeamGamesDAO;
+import ua.nenya.dao.impl.ReadTeamGamesDAOImpl;
+import ua.nenya.domain.Game;
+
+public class Runner {
+	private ReadTeamGamesDAO readGame = new ReadTeamGamesDAOImpl();
+			
+	public void runApp(long id, String tableName){
+		
+		Game game = readGame.readGameById(id, tableName);
+		
+		List<Game> homeTeamGames = readGame.getAllGamesByTeamName(game.getHomeTeam(), id, tableName); 
+		
+		
+		System.out.println(game.getId());
+		System.out.println(game.getHomeTeam());
+		System.out.println(game.getGuestTeam());
+	}
+
+}

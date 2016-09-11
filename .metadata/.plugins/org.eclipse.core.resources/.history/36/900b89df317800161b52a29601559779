@@ -1,0 +1,15 @@
+package ua.nenya.calculator;
+
+import java.util.List;
+
+import ua.nenya.domain.Game;
+import ua.nenya.domain.Team;
+
+public class Calculator {
+	
+	public Team calculateScores(List<Game> games, String team){
+		return null;
+		
+	}
+
+}

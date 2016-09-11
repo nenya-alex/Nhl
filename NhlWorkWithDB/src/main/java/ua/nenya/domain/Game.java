@@ -3,8 +3,9 @@ package ua.nenya.domain;
 import java.time.LocalDate;
 
 public class Game {
-	private String homeTeam;
-	private String guestTeam;
+	private long id;
+	private String homeTeamName;
+	private String guestTeamName;
 	private int homeGoals;
 	private int guestGoals;
 	private double oddsHomeWin;
@@ -13,17 +14,23 @@ public class Game {
 	private LocalDate date;
 	private boolean overTime;
 	
-	public String getHomeTeam() {
-		return homeTeam;
+	public long getId() {
+		return id;
 	}
-	public void setHomeTeam(String homeTeam) {
-		this.homeTeam = homeTeam;
+	public void setId(long id) {
+		this.id = id;
 	}
-	public String getGuestTeam() {
-		return guestTeam;
+	public String getHomeTeamName() {
+		return homeTeamName;
 	}
-	public void setGuestTeam(String guestTeam) {
-		this.guestTeam = guestTeam;
+	public void setHomeTeamName(String homeTeam) {
+		this.homeTeamName = homeTeam;
+	}
+	public String getGuestTeamName() {
+		return guestTeamName;
+	}
+	public void setGuestTeamName(String guestTeam) {
+		this.guestTeamName = guestTeam;
 	}
 	public int getHomeGoals() {
 		return homeGoals;
@@ -38,7 +45,6 @@ public class Game {
 		this.guestGoals = guestGoals;
 	}
 	
-
 	public double getOddsHomeWin() {
 		return oddsHomeWin;
 	}
@@ -72,11 +78,9 @@ public class Game {
 	}
 	@Override
 	public String toString() {
-		return "Game [homeTeam=" + homeTeam + ", guestTeam=" + guestTeam + ", homeGoals=" + homeGoals + ", guestGoals="
-				+ guestGoals + ", oddsHomeWin=" + oddsHomeWin + ", oddsDraw=" + oddsDraw + ", oddsGuestWin="
-				+ oddsGuestWin + ", date=" + date + ", overTime=" + overTime + "]";
+		return "Game [id=" + id + ", homeTeam=" + homeTeamName + ", guestTeam=" + guestTeamName + ", homeGoals=" + homeGoals
+				+ ", guestGoals=" + guestGoals + ", oddsHomeWin=" + oddsHomeWin + ", oddsDraw=" + oddsDraw
+				+ ", oddsGuestWin=" + oddsGuestWin + ", date=" + date + ", overTime=" + overTime + "]";
 	}
 	
-	
-
 }

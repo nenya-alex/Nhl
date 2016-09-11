@@ -1,0 +1,17 @@
+package ua.nenya.calculator;
+
+import java.util.List;
+
+import ua.nenya.domain.Game;
+import ua.nenya.domain.Team;
+
+public class Calculator {
+	
+	public Team calculateTeamStat(List<Game> games, String teamName){
+		Team team = new Team();
+		team.setTeamName(teamName);
+		return null;
+		
+	}
+
+}

@@ -1,0 +1,23 @@
+package ua.nenya.main;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import ua.nenya.dao.ReadTeamGamesDAO;
+import ua.nenya.domain.Game;
+
+public class Runner {
+	
+	public final static String TABLE_NAME = "nhl2015";
+	@Autowired
+	private ReadTeamGamesDAO readGame;
+	
+	public void runApp(long id){
+		Game game = readGame.readGame(id);
+		
+		System.out.println(game.getId());
+		System.out.println(game.getHomeTeam());
+		System.out.println(game.getGuestTeam());
+	}
+
+}
