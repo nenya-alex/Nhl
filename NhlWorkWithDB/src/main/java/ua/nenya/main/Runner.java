@@ -6,6 +6,7 @@ import ua.nenya.calculator.Calculator;
 import ua.nenya.dao.ReadTeamGamesDAO;
 import ua.nenya.dao.impl.ReadTeamGamesDAOImpl;
 import ua.nenya.domain.Game;
+import ua.nenya.domain.PairOfTeams;
 import ua.nenya.domain.Team;
 
 public class Runner {
@@ -31,6 +32,20 @@ public class Runner {
 		guestTeam.setOddsOfWin(game.getOddsGuestWin());
 		guestTeam.setOddsOfDraw(game.getOddsDraw());
 		guestTeam.setOddsOfLose(game.getOddsHomeWin());
+		
+		PairOfTeams pairOfTeams = new PairOfTeams();
+		pairOfTeams.setHomeTeam(homeTeam);
+		pairOfTeams.setGuestTeam(guestTeam);
+		
+		PairOfTeams pairOfTeamsWithNewOdds = calculator.calculateNewOdss(pairOfTeams);
+		
+		homeTeam.setNewOddsOfWin(pairOfTeamsWithNewOdds.getHomeTeam().getNewOddsOfWin());
+		homeTeam.setNewOddsOfDraw(pairOfTeams.getHomeTeam().getNewOddsOfDraw());
+		homeTeam.setNewOddsOfLose(pairOfTeams.getHomeTeam().getNewOddsOfLose());
+		
+		guestTeam.setNewOddsOfWin(pairOfTeamsWithNewOdds.getGuestTeam().getNewOddsOfWin());
+		guestTeam.setNewOddsOfDraw(pairOfTeams.getGuestTeam().getNewOddsOfDraw());
+		guestTeam.setNewOddsOfLose(pairOfTeams.getGuestTeam().getNewOddsOfLose());
 		
 		
 		System.out.println(homeTeam);

@@ -14,5 +14,7 @@
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="ua.nenya.domain.Game"/>
 <fullyQualifiedTypeName name="ua.nenya.calculator.Calculator"/>
+<fullyQualifiedTypeName name="ua.nenya.domain.PairOfTeams"/>
 <fullyQualifiedTypeName name="ua.nenya.domain.Team"/>
+<fullyQualifiedTypeName name="java.lang.Math"/>
 </qualifiedTypeNameHistroy>

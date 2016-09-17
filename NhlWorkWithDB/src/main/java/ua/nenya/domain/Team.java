@@ -16,7 +16,28 @@ public class Team {
 	private double oddsOfWin;
 	private double oddsOfDraw;
 	private double oddsOfLose;
-	
+	private double newOddsOfWin;
+	private double newOddsOfDraw;
+	private double newOddsOfLose;
+		
+	public double getNewOddsOfWin() {
+		return newOddsOfWin;
+	}
+	public void setNewOddsOfWin(double newOddsOfWin) {
+		this.newOddsOfWin = newOddsOfWin;
+	}
+	public double getNewOddsOfDraw() {
+		return newOddsOfDraw;
+	}
+	public void setNewOddsOfDraw(double newOddsOfDraw) {
+		this.newOddsOfDraw = newOddsOfDraw;
+	}
+	public double getNewOddsOfLose() {
+		return newOddsOfLose;
+	}
+	public void setNewOddsOfLose(double newOddsOfLose) {
+		this.newOddsOfLose = newOddsOfLose;
+	}
 	public String getTeamName() {
 		return teamName;
 	}
@@ -98,9 +119,17 @@ public class Team {
 	}
 	@Override
 	public String toString() {
-		return "Team [teamName=" + teamName + ", numberOfGames=" + numberOfGames + ", pointPstg=" + pointPstg
-				+ ", wins=" + wins + ", losses=" + losses + ", draws=" + draws + ", oddsOfWin=" + oddsOfWin
-				+ ", oddsOfDraw=" + oddsOfDraw + ", oddsOfLose=" + oddsOfLose + "]";
+		return "teamName:" + teamName 
+				+ ",\n numberOfGames = " + numberOfGames
+				+ ",\n wins =		" + wins 
+				+ ",\n losses =	" + losses 
+				+ ",\n draws =	" + draws 
+				+ ", \n pointPstg =	" + pointPstg
+				+",\n oddsOfWin =	" + oddsOfWin+ ",	newOddsOfWin =	" + newOddsOfWin
+				+ ",\n oddsOfDraw =	" + oddsOfDraw + ",		newOddsOfDraw =	" + newOddsOfDraw 
+				+ ",\n oddsOfLose =	" + oddsOfLose + ",	newOddsOfLose =	" + newOddsOfLose;
+				
+				
 	}
-		
+	
 }

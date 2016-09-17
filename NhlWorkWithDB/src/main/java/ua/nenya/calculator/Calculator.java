@@ -3,6 +3,7 @@ package ua.nenya.calculator;
 import java.util.List;
 
 import ua.nenya.domain.Game;
+import ua.nenya.domain.PairOfTeams;
 import ua.nenya.domain.Team;
 
 public class Calculator {
@@ -75,8 +76,89 @@ public class Calculator {
 		team.setPoints(points);
 		team.setPointPstg((double)points/((double)numberOfGames*2));
 				
-		return team;
+		return team;		
+	}
+	
+	public PairOfTeams calculateNewOdss (final PairOfTeams pairOfTeams){
 		
+		PairOfTeams pairOfTeamsWithNewOdds = new PairOfTeams();
+		
+		pairOfTeamsWithNewOdds.setHomeTeam(pairOfTeams.getHomeTeam());		
+		pairOfTeamsWithNewOdds.setGuestTeam(pairOfTeams.getGuestTeam());		
+		
+		getNewOdds(pairOfTeamsWithNewOdds);
+		
+		return pairOfTeamsWithNewOdds;
+		
+	}
+
+	private void getNewOdds(PairOfTeams pairOfTeamsWithNewOdds) {
+		Team homeTeam = pairOfTeamsWithNewOdds.getHomeTeam();
+		Team guestTeam = pairOfTeamsWithNewOdds.getGuestTeam();
+		
+		double zWinHomeCoef = getZWinCoef(homeTeam, guestTeam);
+		double zDrawHomeCoef = getZDrawCoef(homeTeam, guestTeam);
+		double zLoseHomeCoef = getZLoseCoef(homeTeam, guestTeam);
+		
+		double zWinGuestCoef = zLoseHomeCoef;
+		double zDrawGuestCoef = zDrawHomeCoef;
+		double zLoseGuestCoef = zWinHomeCoef;
+		
+		double newHomeWinOdds = getNewWinOdds(homeTeam, zWinHomeCoef, zDrawHomeCoef, zLoseHomeCoef);
+		homeTeam.setNewOddsOfWin(newHomeWinOdds);
+		double newHomeDrawOdds = getNewDrawOdds(homeTeam, zWinHomeCoef, zDrawHomeCoef, zLoseHomeCoef);
+		homeTeam.setNewOddsOfDraw(newHomeDrawOdds);
+		double newHomeLoseOdds = getNewLoseOdds(homeTeam, zWinHomeCoef, zDrawHomeCoef, zLoseHomeCoef);
+		homeTeam.setNewOddsOfLose(newHomeLoseOdds);
+		
+		double newGuestWinOdds = getNewWinOdds(guestTeam, zWinGuestCoef, zDrawGuestCoef, zLoseGuestCoef);
+		guestTeam.setNewOddsOfWin(newGuestWinOdds);
+		double newGuestDrawOdds = getNewDrawOdds(guestTeam, zWinGuestCoef, zDrawGuestCoef, zLoseGuestCoef);
+		guestTeam.setNewOddsOfDraw(newGuestDrawOdds);
+		double newGuestLoseOdds = getNewLoseOdds(guestTeam, zWinGuestCoef, zDrawGuestCoef, zLoseGuestCoef);
+		guestTeam.setNewOddsOfLose(newGuestLoseOdds);
+		
+	}
+
+	private double getNewLoseOdds(Team team, double zWinCoef, double zDrawCoef, double zLoseCoef) {
+		return (team.getWins()*zWinCoef+team.getDraws()*zDrawCoef+team.getLosses()*zLoseCoef)/(team.getLosses()*zLoseCoef);
+	}
+
+	private double getNewDrawOdds(Team team, double zWinCoef, double zDrawCoef, double zLoseCoef) {
+		return (team.getWins()*zWinCoef+team.getDraws()*zDrawCoef+team.getLosses()*zLoseCoef)/(team.getDraws()*zDrawCoef);
+	}
+
+	private double getNewWinOdds(Team team, double zWinCoef, double zDrawCoef, double zLoseCoef) {
+		return (team.getWins()*zWinCoef+team.getDraws()*zDrawCoef+team.getLosses()*zLoseCoef)/(team.getWins()*zWinCoef);
+	}
+
+	private double getZLoseCoef(Team teamOne, Team teamTwo) {
+		double z_0 = 0.333;
+		double a = 0.7266;
+		double xNew = teamOne.getPointPstg();
+		double yNew = teamTwo.getPointPstg();	
+		double yOld = -0.7*xNew+0.7*yNew; 
+		double zLoseCoef = z_0*Math.exp(0.5)*Math.exp(-Math.pow((yOld-a), 2)/(2*a*a));
+		return zLoseCoef;
+	}
+
+	private double getZDrawCoef(Team teamOne, Team teamTwo) {
+		double z_0 = 0.333;
+		double xNew = teamOne.getPointPstg();
+		double yNew = teamTwo.getPointPstg();	
+		double yOld = -0.7*xNew+0.7*yNew; 
+		double zDrawCoef = z_0*Math.exp(-z_0*z_0*Math.PI*yOld*yOld);
+		return zDrawCoef;
+	}
+
+	private double getZWinCoef(Team teamOne, Team teamTwo) {
+		double z_0 = 0.333;
+		double a = 0.7266;
+		double xNew = teamOne.getPointPstg();
+		double yNew = teamTwo.getPointPstg();	
+		double yOld = -0.7*xNew+0.7*yNew; 
+		double zLoseCoef = z_0*Math.exp(0.5)*Math.exp(-Math.pow((yOld+a), 2)/(2*a*a));
+		return zLoseCoef;
 	}
 
 }
