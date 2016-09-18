@@ -1,5 +1,6 @@
 package ua.nenya.main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ua.nenya.calculator.Calculator;
@@ -24,11 +25,13 @@ public class Runner {
 		List<Game> guestTeamGames = readGame.getAllGamesByTeamName(guestTeamName, id, tableName);
 		
 		Team homeTeam = calculator.calculateTeamStat(homeTeamGames, homeTeamName);
+		homeTeam.setId(game.getId());
 		homeTeam.setOddsOfWin(game.getOddsHomeWin());
 		homeTeam.setOddsOfDraw(game.getOddsDraw());
 		homeTeam.setOddsOfLose(game.getOddsGuestWin());
 		
 		Team guestTeam = calculator.calculateTeamStat(guestTeamGames, guestTeamName);
+		guestTeam.setId(game.getId());
 		guestTeam.setOddsOfWin(game.getOddsGuestWin());
 		guestTeam.setOddsOfDraw(game.getOddsDraw());
 		guestTeam.setOddsOfLose(game.getOddsHomeWin());
@@ -37,20 +40,39 @@ public class Runner {
 		pairOfTeams.setHomeTeam(homeTeam);
 		pairOfTeams.setGuestTeam(guestTeam);
 		
-		PairOfTeams pairOfTeamsWithNewOdds = calculator.calculateNewOdss(pairOfTeams);
+		calculator.calculateNewOdss(pairOfTeams);
 		
-		homeTeam.setNewOddsOfWin(pairOfTeamsWithNewOdds.getHomeTeam().getNewOddsOfWin());
+		homeTeam.setNewOddsOfWin(pairOfTeams.getHomeTeam().getNewOddsOfWin());
 		homeTeam.setNewOddsOfDraw(pairOfTeams.getHomeTeam().getNewOddsOfDraw());
 		homeTeam.setNewOddsOfLose(pairOfTeams.getHomeTeam().getNewOddsOfLose());
 		
-		guestTeam.setNewOddsOfWin(pairOfTeamsWithNewOdds.getGuestTeam().getNewOddsOfWin());
+		guestTeam.setNewOddsOfWin(pairOfTeams.getGuestTeam().getNewOddsOfWin());
 		guestTeam.setNewOddsOfDraw(pairOfTeams.getGuestTeam().getNewOddsOfDraw());
 		guestTeam.setNewOddsOfLose(pairOfTeams.getGuestTeam().getNewOddsOfLose());
 		
+		List<Double> newOddsOfWin = new ArrayList<>();
+		List<Double> newOddsOfDraw = new ArrayList<>();
+		List<Double> newOddsOfLose = new ArrayList<>();
 		
-		System.out.println(homeTeam);
-		System.out.println(" ");
-		System.out.println(guestTeam);
+		newOddsOfWin.add(homeTeam.getNewOddsOfWin());
+		newOddsOfWin.add(guestTeam.getNewOddsOfLose());
+		
+		newOddsOfDraw.add(homeTeam.getNewOddsOfDraw());
+		newOddsOfDraw.add(guestTeam.getNewOddsOfDraw());
+		
+		newOddsOfLose.add(homeTeam.getNewOddsOfLose());
+		newOddsOfLose.add(guestTeam.getNewOddsOfWin());
+		
+		game.setNewOddsOfWin(newOddsOfWin);
+		game.setNewOddsOfDraw(newOddsOfDraw);
+		game.setNewOddsOfLose(newOddsOfLose);
+		
+		System.out.println(game);
+		System.out.println("---------------------------");
+		
+//		System.out.println(homeTeam);
+//		System.out.println(" ");
+//		System.out.println(guestTeam);
 	}
 
 }

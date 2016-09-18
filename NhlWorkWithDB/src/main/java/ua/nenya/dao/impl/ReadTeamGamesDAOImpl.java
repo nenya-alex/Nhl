@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -27,7 +30,7 @@ public class ReadTeamGamesDAOImpl implements ReadTeamGamesDAO {
 		Connection connection;
 		try{
 			connection = connectionManager.getConnection();
-			String selectString = "SELECT home_team, guest_team, odds_home_win, odds_draw, odds_guest_win FROM "+tableName+" WHERE id=?";
+			String selectString = "SELECT home_team, guest_team, home_goals, guest_goals, odds_home_win, odds_draw, odds_guest_win, date, over_time FROM "+tableName+" WHERE id=?";
 			PreparedStatement statement = connection.prepareStatement(selectString);
 			statement.setLong(1, id);
 			ResultSet resultSet = statement.executeQuery();
@@ -35,9 +38,18 @@ public class ReadTeamGamesDAOImpl implements ReadTeamGamesDAO {
 			game.setId(id);
 			game.setHomeTeamName(resultSet.getString("home_team"));
 			game.setGuestTeamName(resultSet.getString("guest_team"));
+			game.setHomeGoals(resultSet.getInt("home_goals"));
+			game.setGuestGoals(resultSet.getInt("guest_goals"));
 			game.setOddsHomeWin(resultSet.getDouble("odds_home_win"));
 			game.setOddsDraw(resultSet.getDouble("odds_draw"));
 			game.setOddsGuestWin(resultSet.getDouble("odds_guest_win"));
+			game.setOverTime(resultSet.getBoolean("over_time"));
+			
+			long milis = resultSet.getLong("date");
+			Date date = new Date(milis);
+			LocalDate localDate = LocalDate.parse( new SimpleDateFormat("yyyy-MM-dd").format(date) );
+			game.setDate(localDate);
+			
 			statement.close();
 			connection.close();
 			connectionManager.closeConnection();

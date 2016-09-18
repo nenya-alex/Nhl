@@ -8,6 +8,9 @@ import ua.nenya.domain.Team;
 
 public class Calculator {
 	
+	private static final double A = 0.7266;
+	private static final double Z_0 = 0.333;
+
 	public Team calculateTeamStat(List<Game> games, String teamName){
 		int numberOfOverTime = 0;
 		int numberOfOverTimeWins = 0;
@@ -79,26 +82,17 @@ public class Calculator {
 		return team;		
 	}
 	
-	public PairOfTeams calculateNewOdss (final PairOfTeams pairOfTeams){
+	public PairOfTeams calculateNewOdss (PairOfTeams pairOfTeams){
 		
-		PairOfTeams pairOfTeamsWithNewOdds = new PairOfTeams();
+		Team homeTeam = pairOfTeams.getHomeTeam();
+		Team guestTeam = pairOfTeams.getGuestTeam();
 		
-		pairOfTeamsWithNewOdds.setHomeTeam(pairOfTeams.getHomeTeam());		
-		pairOfTeamsWithNewOdds.setGuestTeam(pairOfTeams.getGuestTeam());		
+		double xNew = homeTeam.getPointPstg();
+		double yNew = guestTeam.getPointPstg();	
 		
-		getNewOdds(pairOfTeamsWithNewOdds);
-		
-		return pairOfTeamsWithNewOdds;
-		
-	}
-
-	private void getNewOdds(PairOfTeams pairOfTeamsWithNewOdds) {
-		Team homeTeam = pairOfTeamsWithNewOdds.getHomeTeam();
-		Team guestTeam = pairOfTeamsWithNewOdds.getGuestTeam();
-		
-		double zWinHomeCoef = getZWinCoef(homeTeam, guestTeam);
-		double zDrawHomeCoef = getZDrawCoef(homeTeam, guestTeam);
-		double zLoseHomeCoef = getZLoseCoef(homeTeam, guestTeam);
+		double zWinHomeCoef = getZWinCoef(xNew, yNew);
+		double zDrawHomeCoef = getZDrawCoef(xNew, yNew);
+		double zLoseHomeCoef = getZLoseCoef(xNew, yNew);
 		
 		double zWinGuestCoef = zLoseHomeCoef;
 		double zDrawGuestCoef = zDrawHomeCoef;
@@ -118,46 +112,40 @@ public class Calculator {
 		double newGuestLoseOdds = getNewLoseOdds(guestTeam, zWinGuestCoef, zDrawGuestCoef, zLoseGuestCoef);
 		guestTeam.setNewOddsOfLose(newGuestLoseOdds);
 		
+		return pairOfTeams;
+		
 	}
 
 	private double getNewLoseOdds(Team team, double zWinCoef, double zDrawCoef, double zLoseCoef) {
-		return (team.getWins()*zWinCoef+team.getDraws()*zDrawCoef+team.getLosses()*zLoseCoef)/(team.getLosses()*zLoseCoef);
+		double wholeProbability = team.getWins()*zWinCoef+team.getDraws()*zDrawCoef+team.getLosses()*zLoseCoef;
+		return wholeProbability/(team.getLosses()*zLoseCoef);
 	}
 
 	private double getNewDrawOdds(Team team, double zWinCoef, double zDrawCoef, double zLoseCoef) {
-		return (team.getWins()*zWinCoef+team.getDraws()*zDrawCoef+team.getLosses()*zLoseCoef)/(team.getDraws()*zDrawCoef);
+		double wholeProbability = team.getWins()*zWinCoef+team.getDraws()*zDrawCoef+team.getLosses()*zLoseCoef;
+		return wholeProbability/(team.getDraws()*zDrawCoef);
 	}
 
 	private double getNewWinOdds(Team team, double zWinCoef, double zDrawCoef, double zLoseCoef) {
-		return (team.getWins()*zWinCoef+team.getDraws()*zDrawCoef+team.getLosses()*zLoseCoef)/(team.getWins()*zWinCoef);
+		double wholeProbability = team.getWins()*zWinCoef+team.getDraws()*zDrawCoef+team.getLosses()*zLoseCoef;
+		return wholeProbability/(team.getWins()*zWinCoef);
 	}
 
-	private double getZLoseCoef(Team teamOne, Team teamTwo) {
-		double z_0 = 0.333;
-		double a = 0.7266;
-		double xNew = teamOne.getPointPstg();
-		double yNew = teamTwo.getPointPstg();	
+	private double getZLoseCoef(double xNew, double yNew) {
 		double yOld = -0.7*xNew+0.7*yNew; 
-		double zLoseCoef = z_0*Math.exp(0.5)*Math.exp(-Math.pow((yOld-a), 2)/(2*a*a));
+		double zLoseCoef = Z_0*Math.exp(0.5)*Math.exp(-Math.pow((yOld-A), 2)/(2*A*A));
 		return zLoseCoef;
 	}
 
-	private double getZDrawCoef(Team teamOne, Team teamTwo) {
-		double z_0 = 0.333;
-		double xNew = teamOne.getPointPstg();
-		double yNew = teamTwo.getPointPstg();	
+	private double getZDrawCoef(double xNew, double yNew) {
 		double yOld = -0.7*xNew+0.7*yNew; 
-		double zDrawCoef = z_0*Math.exp(-z_0*z_0*Math.PI*yOld*yOld);
+		double zDrawCoef = Z_0*Math.exp(-Z_0*Z_0*Math.PI*yOld*yOld);
 		return zDrawCoef;
 	}
 
-	private double getZWinCoef(Team teamOne, Team teamTwo) {
-		double z_0 = 0.333;
-		double a = 0.7266;
-		double xNew = teamOne.getPointPstg();
-		double yNew = teamTwo.getPointPstg();	
+	private double getZWinCoef(double xNew, double yNew) {
 		double yOld = -0.7*xNew+0.7*yNew; 
-		double zLoseCoef = z_0*Math.exp(0.5)*Math.exp(-Math.pow((yOld+a), 2)/(2*a*a));
+		double zLoseCoef = Z_0*Math.exp(0.5)*Math.exp(-Math.pow((yOld+A), 2)/(2*A*A));
 		return zLoseCoef;
 	}
 

@@ -8,7 +8,9 @@ public class Main {
 		System.out.println("START");
 		
 		Runner runner = new Runner();
-		runner.runApp(GAME_ID, TABLE_NAME);
+		for (int i = 900; i < 1000; i++) {
+			runner.runApp(i, TABLE_NAME);
+		}
 		
 		System.out.println("DONE");
 	}

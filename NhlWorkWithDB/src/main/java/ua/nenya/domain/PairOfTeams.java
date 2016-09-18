@@ -17,5 +17,4 @@ public class PairOfTeams {
 		this.guestTeam = guestTeam;
 	}
 	
-
 }

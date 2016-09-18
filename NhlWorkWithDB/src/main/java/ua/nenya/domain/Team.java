@@ -2,6 +2,7 @@ package ua.nenya.domain;
 
 public class Team {
 	
+	private long id;
 	private String teamName;
 	private int numberOfGames;
 	
@@ -19,7 +20,13 @@ public class Team {
 	private double newOddsOfWin;
 	private double newOddsOfDraw;
 	private double newOddsOfLose;
-		
+			
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	public double getNewOddsOfWin() {
 		return newOddsOfWin;
 	}
@@ -119,7 +126,8 @@ public class Team {
 	}
 	@Override
 	public String toString() {
-		return "teamName:" + teamName 
+		return "#game: "+id
+				+",\n teamName:" + teamName 
 				+ ",\n numberOfGames = " + numberOfGames
 				+ ",\n wins =		" + wins 
 				+ ",\n losses =	" + losses 
