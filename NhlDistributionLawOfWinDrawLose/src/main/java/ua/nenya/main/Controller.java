@@ -39,8 +39,8 @@ public class Controller {
 
 			Team guestTeam = calculator.calculateTeamStat(guestTeamGames, guestTeamName);
 			
-			float homeTeamRating = homeTeam.getPoints();
-			float guestTeamRating = guestTeam.getPoints();
+			float homeTeamRating = homeTeam.getPointPstg();
+			float guestTeamRating = guestTeam.getPointPstg();
 			
 			if (!game.isOverTime()) {
 				String winnerTeamName = calculator.getWinnerTeamName(game);				
