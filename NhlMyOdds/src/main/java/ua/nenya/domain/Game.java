@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Game {
 	private long id;
-	private String season;
 	private Team homeTeam;
 	private Team guestTeam;
 	private int homeGoals;
@@ -114,13 +113,4 @@ public class Game {
 	public void setOverTime(boolean overTime) {
 		this.overTime = overTime;
 	}
-
-	public String getSeason() {
-		return season;
-	}
-
-	public void setSeason(String season) {
-		this.season = season;
-	}
-	
 }

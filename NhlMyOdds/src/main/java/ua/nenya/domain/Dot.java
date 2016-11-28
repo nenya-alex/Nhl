@@ -34,6 +34,14 @@ public class Dot {
 		result.put(Contstants.HOME_LOSER, new ArrayList<Game>());
 	}
 		
+	public int getLost() {
+		return lost;
+	}
+
+	public void setLost(int lost) {
+		this.lost = lost;
+	}
+
 	public int getDrawWinET() {
 		return drawWinET;
 	}
@@ -64,14 +72,6 @@ public class Dot {
 
 	public void setDrawLosePen(int drawLosePen) {
 		this.drawLosePen = drawLosePen;
-	}
-
-	public int getLost() {
-		return lost;
-	}
-
-	public void setLost(int lost) {
-		this.lost = lost;
 	}
 
 	public int getWins() {

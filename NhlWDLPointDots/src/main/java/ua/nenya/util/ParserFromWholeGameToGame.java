@@ -28,20 +28,25 @@ public class ParserFromWholeGameToGame {
 		String players = wholeGame.getPlayers();
 		
 		String homeTeam = players.substring(0, players.indexOf("-")-1);
-		game.setHomeTeamName(homeTeam);
+		game.getHomeTeam().setTeamName(homeTeam);
 		
 		String guestTeam = players.substring(players.indexOf("-")+2,players.length());
-		game.setGuestTeamName(guestTeam);
+		game.getGuestTeam().setTeamName(guestTeam);
 		
 		game.setOddsHomeWin(Double.valueOf(wholeGame.getOddsHomeWin()));
 		game.setOddsDraw(Double.valueOf(wholeGame.getOddsDraw()));
-		game.setOddsGuestWin(Double.valueOf(wholeGame.getOddsGuestWin()));
+		game.setOddsHomeLose(Double.valueOf(wholeGame.getOddsGuestWin()));
 		
 		String score = wholeGame.getScore();
 		if(score.endsWith(".")||score.endsWith("T")){
 			game.setOverTime(true);
 			game.setHomeGoals(Integer.valueOf(score.substring(0, score.indexOf(":"))));
 			game.setGuestGoals(Integer.valueOf(score.substring(score.indexOf(":")+1, score.indexOf(" "))));
+			if(score.endsWith(".")){
+				game.setPenalty(true);
+			}else{
+				game.setPenalty(false);
+			}
 		}else{
 			game.setOverTime(false);
 			game.setHomeGoals(Integer.valueOf(score.substring(0, score.indexOf(":"))));

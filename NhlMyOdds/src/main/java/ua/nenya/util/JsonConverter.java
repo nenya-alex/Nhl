@@ -1,4 +1,4 @@
-package ua.nenya.dao.impl;
+package ua.nenya.util;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,25 +9,21 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import ua.nenya.domain.Dot;
-import ua.nenya.domain.WholeGame;
-
-public class JsonConverter{
+public class JsonConverter<T>{
 	
-	public List<WholeGame> initWholeGamesFromJson(String fileName) {
+	public List<T> initFromJson(String fileName) {
 		ObjectMapper mapper = new ObjectMapper();
-		List<WholeGame> wholeGames = new ArrayList<>();
+		List<T> result = new ArrayList<>();
 		try {
-			wholeGames = mapper.readValue(new File(fileName), new TypeReference<List<WholeGame>>() {
+			result = mapper.readValue(new File(fileName), new TypeReference<List<T>>() {
 			});
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return wholeGames;
+		return result;
 	}
-
-	public void convertDotsToJSON(List<Dot> dots,File file) {
-
+	
+	public void convertToJSON(List<T> dots,File file) {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
@@ -36,4 +32,5 @@ public class JsonConverter{
 			e.printStackTrace();
 		}
 	}
+	
 }

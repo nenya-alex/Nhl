@@ -1,51 +1,61 @@
 package ua.nenya.main;
 
+import java.io.File;
 import java.util.List;
 
 import ua.nenya.calculator.Calculator;
-import ua.nenya.dao.impl.ReadTeamGames;
-import ua.nenya.dao.impl.JsonConverter;
 import ua.nenya.domain.Dot;
 import ua.nenya.domain.Game;
 import ua.nenya.domain.Team;
 import ua.nenya.domain.WholeGame;
+import ua.nenya.util.Contstants;
+import ua.nenya.util.JsonConverter;
 import ua.nenya.util.ParserFromWholeGameToGame;
 
 public class Controller {
 	
 	public void getAllDots(String fileName, List<Dot> dots) {
 		
-		ReadTeamGames readGame = new ReadTeamGames();
 		Calculator calculator = new Calculator();
 
-		List<WholeGame> wholeGames = new JsonConverter().initWholeGamesFromJson(fileName);		
-		List<Game> games = new ParserFromWholeGameToGame().parse(wholeGames);
+		List<WholeGame> wholeGames = new JsonConverter<WholeGame>().initWholeGamesFromJson(fileName);	
+		//TODO mistake
+		List<Game> games = new ParserFromWholeGameToGame().parse(wholeGames);		
+		System.out.println(fileName);
 
 		for (int id = 0; id < games.size(); id++) {
 			Game game = games.get(id);
+			game.setSeason(fileName);
+
+			Team homeTeam = calculator.calculateTeamStatistic(games, game.getHomeTeam().getTeamName(), id);
+			Team guestTeam = calculator.calculateTeamStatistic(games, game.getGuestTeam().getTeamName(), id);			
 			
-			String homeTeamName = game.getHomeTeamName();
-			List<Game> homeTeamGames = readGame.getAllGamesByTeamName(homeTeamName, id, games);
-
-			String guestTeamName = game.getGuestTeamName();
-			List<Game> guestTeamGames = readGame.getAllGamesByTeamName(guestTeamName, id, games);
-
-			Team homeTeam = calculator.calculateTeamStat(homeTeamGames, homeTeamName);
-
-			Team guestTeam = calculator.calculateTeamStat(guestTeamGames, guestTeamName);
-			
-			int homeTeamRating = homeTeam.getPoints();
-			int guestTeamRating = guestTeam.getPoints();
+			game.setHomeTeam(homeTeam);
+			game.setGuestTeam(guestTeam);			
 			
 			if (!game.isOverTime()) {
 				if(calculator.isHomeTeamWinner(game)){
-					calculator.fillDotsByCount(dots, id, fileName, homeTeamRating, guestTeamRating, "homeWinner");
+					calculator.fillDotsByGames(dots, game, Contstants.HOME_WINER);
 				}else{
-					calculator.fillDotsByCount(dots, id, fileName, guestTeamRating, homeTeamRating, "guestWinner");
+					calculator.fillDotsByGames(dots, game, Contstants.HOME_LOSER);
 				}
 			}else{
-				calculator.fillDotsByCount(dots, id, fileName, homeTeamRating, guestTeamRating, "draw");				
+				if(game.getPenalty()){
+					if(game.getHomeGoals()>game.getGuestGoals()){
+						calculator.fillDotsByGames(dots, game, Contstants.DRAW_WIN_PEN);
+					}else{
+						calculator.fillDotsByGames(dots, game, Contstants.DRAW_LOSE_PEN);
+					}
+				}else{
+					if(game.getHomeGoals()>game.getGuestGoals()){
+						calculator.fillDotsByGames(dots, game, Contstants.DRAW_WIN_ET);
+					}else{
+						calculator.fillDotsByGames(dots, game, Contstants.DRAW_LOSE_ET);
+					}					
+				}							
 			}			
 		}
+		String fileNameForAllGamesSeason = "allGames"+fileName.substring(22, 24)+".json";
+		new JsonConverter<Game>().convertToJSON(games, new File(fileNameForAllGamesSeason));
 	}
 }

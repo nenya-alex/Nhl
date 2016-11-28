@@ -4,9 +4,10 @@ import java.io.File;
 import java.util.List;
 
 import ua.nenya.calculator.Calculator;
-import ua.nenya.dao.impl.JsonConverter;
 import ua.nenya.domain.Dot;
+import ua.nenya.util.Contstants;
 import ua.nenya.util.FillerFileNameList;
+import ua.nenya.util.JsonConverter;
 import ua.nenya.util.UnloaderInFile;
 
 public class Main {
@@ -15,8 +16,9 @@ public class Main {
 	private final static int END_OF_INTERVAL = 164;
 	private final static int NUMBER_OF_INTERVALS = 164;
 	private final static String UNLOADING_HOME_WIN_DOTS_FILE_NAME = "dotsHomeWinPoints.csv";
-	private final static String UNLOADING_DRAW_DOTS_FILE_NAME = "dotsDrawPoints.csv";
-	private final static String UNLOADING_GUEST_WIN_DOTS_FILE_NAME = "dotsGuestWinPoints.csv";
+	private final static String UNLOADING_DRAW_ET_DOTS_FILE_NAME = "dotsDrawETPoints.csv";
+	private final static String UNLOADING_DRAW_PEN_DOTS_FILE_NAME = "dotsDrawPenPoints.csv";
+	private final static String UNLOADING_GUEST_WIN_DOTS_FILE_NAME = "dotsHomeLostPoints.csv";
 
 	public static void main(String[] args) {
 		System.out.println("START");
@@ -34,11 +36,22 @@ public class Main {
 			controll.getAllDots(fileName, dots);
 		}
 		
-		unloaderInFile.unloadDotsOfWinsInFile(UNLOADING_HOME_WIN_DOTS_FILE_NAME, BEGIN_OF_INTERVAL, END_OF_INTERVAL, dots, "homeWinner");
-		unloaderInFile.unloadDotsOfWinsInFile(UNLOADING_DRAW_DOTS_FILE_NAME, BEGIN_OF_INTERVAL, END_OF_INTERVAL, dots, "draw");
-		unloaderInFile.unloadDotsOfWinsInFile(UNLOADING_GUEST_WIN_DOTS_FILE_NAME, BEGIN_OF_INTERVAL, END_OF_INTERVAL, dots, "guestWinner");
+		for(Dot dot: dots){
+			dot.setWins(dot.getResult().get(Contstants.HOME_WINER).size());
+			dot.setLost(dot.getResult().get(Contstants.HOME_LOSER).size());
+			dot.setDrawWinET(dot.getResult().get(Contstants.DRAW_WIN_ET).size());
+			dot.setDrawLoseET(dot.getResult().get(Contstants.DRAW_LOSE_ET).size());
+			dot.setDrawWinPen(dot.getResult().get(Contstants.DRAW_WIN_PEN).size());
+			dot.setDrawLosePen(dot.getResult().get(Contstants.DRAW_LOSE_PEN).size());
+		}
 		
-		new JsonConverter().convertDotsToJSON(dots, new File("allDots.json"));
+//		unloaderInFile.unloadDotsOfWinsInFile(UNLOADING_HOME_WIN_DOTS_FILE_NAME, BEGIN_OF_INTERVAL, END_OF_INTERVAL, dots, Contstants.HOME_WINER);
+//		unloaderInFile.unloadDotsOfWinsInFile(UNLOADING_DRAW_ET_DOTS_FILE_NAME, BEGIN_OF_INTERVAL, END_OF_INTERVAL, dots, Contstants.DRAW_ET);
+//		unloaderInFile.unloadDotsOfWinsInFile(UNLOADING_DRAW_PEN_DOTS_FILE_NAME, BEGIN_OF_INTERVAL, END_OF_INTERVAL, dots, Contstants.DRAW_PEN);
+//		unloaderInFile.unloadDotsOfWinsInFile(UNLOADING_GUEST_WIN_DOTS_FILE_NAME, BEGIN_OF_INTERVAL, END_OF_INTERVAL, dots, Contstants.HOME_LOSER);
+		
+		//TODO доработать выведение в файл только нужной информации
+//		new JsonConverter<Dot>().convertToJSON(dots, new File("allDots.json"));
 		
 		System.out.println("DONE");
 	}
