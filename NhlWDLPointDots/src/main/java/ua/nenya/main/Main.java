@@ -26,13 +26,13 @@ public class Main {
 		UnloaderInFile unloaderInFile = new UnloaderInFile();
 
 		FillerFileNameList filler = new FillerFileNameList();
-		List<String> files = filler.fillList();
+		List<String> filesForStatistics = filler.fillFileListForStstistics();
 		
 		Controller controll = new Controller();
 		
 		List<Dot> dots = calculator.getDots(BEGIN_OF_INTERVAL, END_OF_INTERVAL, NUMBER_OF_INTERVALS);
 
-		for(String fileName: files){
+		for(String fileName: filesForStatistics){
 			controll.getAllDots(fileName, dots);
 		}
 		
@@ -45,12 +45,11 @@ public class Main {
 			dot.setDrawLosePen(dot.getResult().get(Contstants.DRAW_LOSE_PEN).size());
 		}
 		
-//		unloaderInFile.unloadDotsOfWinsInFile(UNLOADING_HOME_WIN_DOTS_FILE_NAME, BEGIN_OF_INTERVAL, END_OF_INTERVAL, dots, Contstants.HOME_WINER);
+		unloaderInFile.unloadDotsOfWinsInFile(UNLOADING_HOME_WIN_DOTS_FILE_NAME, BEGIN_OF_INTERVAL, END_OF_INTERVAL, dots, Contstants.HOME_WINER);
 //		unloaderInFile.unloadDotsOfWinsInFile(UNLOADING_DRAW_ET_DOTS_FILE_NAME, BEGIN_OF_INTERVAL, END_OF_INTERVAL, dots, Contstants.DRAW_ET);
 //		unloaderInFile.unloadDotsOfWinsInFile(UNLOADING_DRAW_PEN_DOTS_FILE_NAME, BEGIN_OF_INTERVAL, END_OF_INTERVAL, dots, Contstants.DRAW_PEN);
-//		unloaderInFile.unloadDotsOfWinsInFile(UNLOADING_GUEST_WIN_DOTS_FILE_NAME, BEGIN_OF_INTERVAL, END_OF_INTERVAL, dots, Contstants.HOME_LOSER);
+		unloaderInFile.unloadDotsOfWinsInFile(UNLOADING_GUEST_WIN_DOTS_FILE_NAME, BEGIN_OF_INTERVAL, END_OF_INTERVAL, dots, Contstants.HOME_LOSER);
 		
-		//TODO доработать выведение в файл только нужной информации
 //		new JsonConverter<Dot>().convertToJSON(dots, new File("allDots.json"));
 		
 		System.out.println("DONE");

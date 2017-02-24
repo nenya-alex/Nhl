@@ -5,7 +5,7 @@ import java.util.List;
 
 public class FillerFileNameList {
 	
-	public List<String> fillList(){
+	public List<String> fillFileListForStstistics(){
 		
 		List<String> files = new ArrayList<>();
 		files.add("src/main/resources/nhl05.json");

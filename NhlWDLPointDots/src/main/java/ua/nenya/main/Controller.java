@@ -19,13 +19,12 @@ public class Controller {
 		Calculator calculator = new Calculator();
 
 		List<WholeGame> wholeGames = new JsonConverter<WholeGame>().initWholeGamesFromJson(fileName);	
-		//TODO mistake
 		List<Game> games = new ParserFromWholeGameToGame().parse(wholeGames);		
-		System.out.println(fileName);
+		System.out.println(fileName.substring(fileName.length()-7, fileName.length()-5));
 
 		for (int id = 0; id < games.size(); id++) {
 			Game game = games.get(id);
-			game.setSeason(fileName);
+			game.setSeason(fileName.substring(fileName.length()-7, fileName.length()-5));
 
 			Team homeTeam = calculator.calculateTeamStatistic(games, game.getHomeTeam().getTeamName(), id);
 			Team guestTeam = calculator.calculateTeamStatistic(games, game.getGuestTeam().getTeamName(), id);			
