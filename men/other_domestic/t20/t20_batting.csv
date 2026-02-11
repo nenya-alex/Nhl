@@ -41,3 +41,21 @@ match_id,teams,innings,player,batter,howout,fielder,bowler,score,fours,sixes,bal
 20080419_00003_DelhiFK,2,1,1,"Gambhir, G {b1981-10-14}",not out,,,58,7,1,46,0,0,NA,NA
 20080419_00003_DelhiFK,2,1,2,"Sehwag, V {b1978-10-20}",bowled,,"Watson, SR {b1981-6-17}",12,3,0,4,0,1,1,20
 20080419_00003_DelhiFK,2,1,3,"Dhawan, S {b1985-12-5}",not out,,,52,8,0,41,0,0,NA,NA
+20080420_00004_Calcutt,1,1,1,"Gilchrist, AC {b1971-11-14}",c,Mohammad Hafeez {b1980-10-17},"Kartik, M {b1976-9-11}",23,1,2,22,0,1,3,47
+20080420_00004_Calcutt,1,1,2,"Venugopal Rao, Y {b1982-2-26}",c,"Kartik, M {b1976-9-11}","Sharma, I {b1988-9-2}",14,1,0,14,0,1,1,21
+20080420_00004_Calcutt,1,1,3,"Laxman, VVS {b1974-11-1}",c,"Shukla, LR {b1981-5-6}","Dinda, AB {b1984-3-25}",0,0,0,6,0,1,2,22
+20080420_00004_Calcutt,1,1,4,"Symonds, A {b1975-6-9}",c,"Hussey, DJ {b1977-7-15}","Agarkar, AB {b1977-12-4}",32,2,2,39,0,1,7,104
+20080420_00004_Calcutt,1,1,5,"Sharma, RG {b1987-4-30}",c,"Saha, WP {b1984-10-24}","Kartik, M {b1976-9-11}",0,0,0,3,0,1,4,47
+20080420_00004_Calcutt,1,1,6,"Styris, SB {b1975-7-10}",bowled,,Mohammad Hafeez {b1980-10-17},6,1,0,7,0,1,5,58
+20080420_00004_Calcutt,1,1,7,"Yadav, AS {b1981-12-23}",c,"Dinda, AB {b1984-3-25}","Hussey, DJ {b1977-7-15}",10,0,1,10,0,1,6,71
+20080420_00004_Calcutt,1,1,8,"Bangar, SB {b1972-10-11}",c,"Saha, WP {b1984-10-24}","Kartik, M {b1976-9-11}",14,1,1,10,0,1,9,110
+20080420_00004_Calcutt,1,1,9,"Vaas, WPUJC {b1974-1-27}",c,"Ganguly, SC {b1972-7-8}","Agarkar, AB {b1977-12-4}",0,0,0,1,0,1,8,105
+20080420_00004_Calcutt,1,1,10,"Singh, RP {b1985-12-6}",not out,,,1,0,0,2,0,0,NA,NA
+20080420_00004_Calcutt,1,1,11,"Ojha, PP {b1986-9-5}",run out,,,0,0,0,0,0,1,10,110
+20080420_00004_Calcutt,2,1,1,"Saha, WP {b1984-10-24}",c,"Styris, SB {b1975-7-10}","Vaas, WPUJC {b1974-1-27}",10,1,0,17,0,1,3,21
+20080420_00004_Calcutt,2,1,2,"McCullum, BB {b1981-9-27}",c,"Sharma, RG {b1987-4-30}","Singh, RP {b1985-12-6}",5,1,0,5,0,1,1,6
+20080420_00004_Calcutt,2,1,3,"Ponting, RT {b1974-12-19}",lbw,,"Vaas, WPUJC {b1974-1-27}",0,0,0,1,0,1,2,16
+20080420_00004_Calcutt,2,1,4,"Ganguly, SC {b1972-7-8}",bowled,,"Ojha, PP {b1986-9-5}",14,1,0,30,0,1,4,68
+20080420_00004_Calcutt,2,1,5,"Hussey, DJ {b1977-7-15}",not out,,,38,1,3,43,0,0,NA,NA
+20080420_00004_Calcutt,2,1,6,Mohammad Hafeez {b1980-10-17},c,"Symonds, A {b1975-6-9}","Ojha, PP {b1986-9-5}",13,1,1,13,0,1,5,88
+20080420_00004_Calcutt,2,1,7,"Shukla, LR {b1981-5-6}",not out,,,4,0,0,6,0,0,NA,NA
