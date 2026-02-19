@@ -59,3 +59,18 @@ match_id,teams,innings,player,batter,howout,fielder,bowler,score,fours,sixes,bal
 20080420_00004_Calcutt,2,1,5,"Hussey, DJ {b1977-7-15}",not out,,,38,1,3,43,0,0,NA,NA
 20080420_00004_Calcutt,2,1,6,Mohammad Hafeez {b1980-10-17},c,"Symonds, A {b1975-6-9}","Ojha, PP {b1986-9-5}",13,1,1,13,0,1,5,88
 20080420_00004_Calcutt,2,1,7,"Shukla, LR {b1981-5-6}",not out,,,4,0,0,6,0,0,NA,NA
+20080420_00005_Wankhed,1,1,1,"Ronchi, L {b1981-4-23}",c,"Kohli, V {b1988-11-5}",Zaheer Khan {b1978-10-7},8,2,0,10,90,1,1,9
+20080420_00005_Wankhed,1,1,2,"Jayasuriya, ST {b1969-6-30}",run out,,,29,5,1,16,0,1,2,46
+20080420_00005_Wankhed,1,1,3,"Thornely, DJ {b1978-10-1}",retired hurt,,,0,0,0,5,0,0,NA,NA
+20080420_00005_Wankhed,1,1,4,"Uthappa, RV {b1985-11-11}",st,"Boucher, MV {b1976-12-3}","Akhil, B {b1977-10-7}",48,5,1,38,0,1,4,125
+20080420_00005_Wankhed,1,1,5,"Shah, PR {b1987-11-3}",c,"Kohli, V {b1988-11-5}","Akhil, B {b1977-10-7}",19,2,0,23,0,1,3,97
+20080420_00005_Wankhed,1,1,6,"Nayar, AM {b1983-10-26}",c,Zaheer Khan {b1978-10-7},"Kumar, P {b1986-10-2}",20,1,1,14,0,1,5,152
+20080420_00005_Wankhed,1,1,7,"Pollock, SM {b1973-7-16}",bowled,,Zaheer Khan {b1978-10-7},28,3,2,12,0,1,6,165
+20080420_00005_Wankhed,1,1,8,Harbhajan Singh {b1980-7-3},not out,,,2,0,0,2,0,0,NA,NA
+20080420_00005_Wankhed,2,1,1,"Chanderpaul, S {b1974-8-16}",c,"Nayar, AM {b1983-10-26}","Kulkarni, DS {b1988-12-10}",16,3,0,11,0,1,1,37
+20080420_00005_Wankhed,2,1,2,"Dravid, RS {b1973-1-11}",c and b,Harbhajan Singh {b1980-7-3},Harbhajan Singh {b1980-7-3},32,4,0,33,0,1,2,68
+20080420_00005_Wankhed,2,1,3,"Taylor, LRPL {b1984-3-8}",c,"Nayar, AM {b1983-10-26}","Jayasuriya, ST {b1969-6-30}",23,1,2,12,0,1,3,76
+20080420_00005_Wankhed,2,1,4,"Kallis, JH {b1975-10-16}",c,"Nayar, AM {b1983-10-26}",Harbhajan Singh {b1980-7-3},25,0,1,24,0,1,5,161
+20080420_00005_Wankhed,2,1,5,"Kohli, V {b1988-11-5}",c,"Ronchi, L {b1981-4-23}","Nehra, A {b1979-4-29}",23,3,1,14,0,1,4,106
+20080420_00005_Wankhed,2,1,6,"Boucher, MV {b1976-12-3}",not out,,,39,4,2,19,0,0,NA,NA
+20080420_00005_Wankhed,2,1,7,"Akhil, B {b1977-10-7}",not out,,,3,0,0,5,0,0,NA,NA
